@@ -5,3 +5,5 @@
 # boll: True False
 
 # str: 'olá'  "olá"  '''olá''' """olá"""
+
+#Operadores ** + - * / // % 
