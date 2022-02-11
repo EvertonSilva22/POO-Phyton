@@ -12,3 +12,6 @@ string = ('a', 'b', 'c')
 
 listas_mista = (1, False, 'abc', None)
 # intervalos (range)
+range(fim)
+range(inicio, fim)
+range(inicio, fim, passo)
