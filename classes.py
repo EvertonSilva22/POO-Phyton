@@ -10,16 +10,21 @@ objeto_1.atributo_1 = 'Valor do atributo 1'
 ##########################################
 class Livro:
     def __init__(self, nome, autor):
-     self.nome= nome
-     self.autor= autor
-     self.editora= 'Nome da editora'
+        self.nome= nome
+        self.autor= autor
+        self.editora= 'Nome da editora'
 
-livro_1 = Livro('O cão dos Baskeville', 'Everton Silva')
-livro_2 = Livro('O Príncipe', 'Nicolau Maquiavel')
+    def identidade(self):
+        return (f'Sou o livro {self.nome}, e estou salvo '
+                f'no endereço de memória: {id(self)}')
 
-print('livro 1:', vars(livro_1))
-print(livro_1.nome)
-print(livro_1.autor)
+if __name__== '__main__':
+    livro_1 = Livro('O cão dos Baskeville', 'Everton Silva')
+    livro_2 = Livro('O Príncipe', 'Nicolau Maquiavel')
+
+    print('livro 1:', vars(livro_1))
+    print(livro_1.nome)
+    print(livro_1.autor)
 
 
 #print('livro 2:',vars(livro_2))#
