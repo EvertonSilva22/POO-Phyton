@@ -11,9 +11,15 @@ class Conta:
         return self.__saldo
 
     def depositar(self, valor):
-        self.__saldo += valor
+         if valor < 0:
+            return 'Valor deve ser positivo'
+            self.__saldo += valor
 
-    def sacar(self, valor):    
+    def sacar(self, valor):  
+        if valor < 0:
+            return 'Valor deve ser positivo'
+        if valor > self.__saldo:
+            return 'Saldo insuficiente'
         self.__saldo -= valor
 
 
