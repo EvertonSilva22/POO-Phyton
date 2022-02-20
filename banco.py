@@ -14,6 +14,7 @@ class Conta:
          if valor < 0:
             return 'Valor deve ser positivo'
             self.__saldo += valor
+            return 'Depósito realizado com sucesso'
 
     def sacar(self, valor):  
         if valor < 0:
@@ -21,6 +22,7 @@ class Conta:
         if valor > self.__saldo:
             return 'Saldo insuficiente'
         self.__saldo -= valor
+        return 'Saque realizado com sucesso'
 
 
 if __name__ == '__main__':
