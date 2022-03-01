@@ -4,44 +4,48 @@
 # Email Impacta: everton.asilva@aluno.faculdadeimpacta.com.br
 
 
+"""
+Nesta atividade você deve implementar uma classe que modela uma conta em um banco.
+Um "esqueleto" da classe encontra-se montado abaixo, e você deve utilizá-lo
+para completar o que falta.
+Siga as instruções nos comentários detalhadamente.
 
-from xmlrpc.client import boolean
+OBS: não altere as assinaturas dos métodos, caso contrário sua atividade não será
+aprovada pelo corretor automático.
+"""
 
 
 class Conta:
 
 	def __init__(self, titular, agencia, numero, saldo_inicial):
-            self.titular = titular
-            self.agencia = agencia
-            self.numero = numero
-            self.saldo = saldo_inicial
-            pass    
+		self._titular = titular
+		self._agencia = agencia
+		self._numero = numero
+		self._saldo = saldo_inicial 
+		self._ativa = False
+		"""
+		Crie os seguintes atributos privados no construtor da classe e inicie 
+		seus respectivos valores de acordo com as especificações:
 
-            """
-            Crie os seguintes atributos privados no construtor da classe e inicie 
-            seus respectivos valores de acordo com as especificações:
+		- titular: inicializado através do parâmetro de mesmo nome;
+		- agencia: inicializado através do parâmetro de mesmo nome;
+		- numero: inicializado através do parâmetro de mesmo nome;
+		- saldo: inicializado através do parâmetro saldo_inicial;
+		- ativa: inicializado com o valor booleano False;
+		- operacoes: lista inicializada com o valor inicial: [('saldo inicial', saldo_inicial)]
 
-            - titular: inicializado através do parâmetro de mesmo nome;
-            - agencia: inicializado através do parâmetro de mesmo nome;
-            - numero: inicializado através do parâmetro de mesmo nome;
-            - saldo: inicializado através do parâmetro saldo_inicial;
-            - ativa: inicializado com o valor booleano False;
-            - operacoes: lista inicializada com o valor inicial: [('saldo inicial', saldo_inicial)]
-
-            * OBS: note que o(s) valor(es) contido(s) na lista de operações (que é um
-            atributo privado) sempre serão tuplas, cada uma com 2 valores.
-            """
-    
-        
-		
+		* OBS: note que o(s) valor(es) contido(s) na lista de operações (que é um
+		atributo privado) sempre serão tuplas, cada uma com 2 valores.
+		"""
+		pass
 
 
-    @property
+	@property
 	def titular(self):
 		"""
 		Implemente a property titular: retorna o valor do atributo privado titular;
 		"""
-	pass
+		pass
 
 
 	@property
