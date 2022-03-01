@@ -18,11 +18,11 @@ aprovada pelo corretor automático.
 class Conta:
 
 	def __init__(self, titular, agencia, numero, saldo_inicial):
-		self._titular = titular
-		self._agencia = agencia
-		self._numero = numero
-		self._saldo = saldo_inicial 
-		self._ativa = False
+		self.__titular = titular
+		self.__agencia = agencia
+		self.__numero = numero
+		self.__saldo = saldo_inicial 
+		self.__ativa = False
 		"""
 		Crie os seguintes atributos privados no construtor da classe e inicie 
 		seus respectivos valores de acordo com as especificações:
@@ -45,6 +45,7 @@ class Conta:
 		"""
 		Implemente a property titular: retorna o valor do atributo privado titular;
 		"""
+		return self.__titular
 		pass
 
 
@@ -53,6 +54,7 @@ class Conta:
 		"""
 		Implemente a property agencia: retorna o valor do atributo privado agencia;
 		"""
+		return self.__agencia
 		pass
 	
 
@@ -61,6 +63,7 @@ class Conta:
 		"""
 		Implemente a property numero: retorna o valor do atributo privado numero;
 		"""
+		return self.__numero
 		pass
 	
 
@@ -69,6 +72,7 @@ class Conta:
 		"""
 		Implemente a property saldo: retorna o valor do atributo privado saldo;
 		"""
+		return self.__saldo
 		pass
 	
 
@@ -77,6 +81,7 @@ class Conta:
 		"""
 		Implemente a property ativa: retorna o valor do atributo privado ativa;
 		"""
+		return self.__ativa
 		pass
 	
 
