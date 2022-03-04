@@ -4,6 +4,7 @@
 # Email Impacta: everton.asilva@aluno.faculdadeimpacta.com.br
 
 
+
 """
 Nesta atividade você deve implementar uma classe que modela uma conta em um banco.
 Um "esqueleto" da classe encontra-se montado abaixo, e você deve utilizá-lo
@@ -15,6 +16,9 @@ aprovada pelo corretor automático.
 """
 
 
+from typing_extensions import Self
+
+
 class Conta:
 
 	def __init__(self, titular, agencia, numero, saldo_inicial):
@@ -23,6 +27,9 @@ class Conta:
 		self.__numero = numero
 		self.__saldo = saldo_inicial 
 		self.__ativa = False
+		self.__operacoes = []
+        Self._gravar_operacao('saldo inicial', self.__saldo)
+		
 		"""
 		Crie os seguintes atributos privados no construtor da classe e inicie 
 		seus respectivos valores de acordo com as especificações:
