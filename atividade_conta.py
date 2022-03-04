@@ -183,5 +183,12 @@ class Conta:
 		Você deve seguir exatamente esse padrão, utilizando letras minúsculas e sem
 		acentos.
 		"""
-		
+		def tirar_extrato(self):
+			return self.__operacoes
+			def _gravar_operacao(self, operacao, valor):
+				self.__operacoes.append((operacao, valor))
+				def _validar_condicoes(self, valor):
+					if self.ativa and valor > 0:
+						return True
+						return False
 		pass
