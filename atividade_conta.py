@@ -16,7 +16,7 @@ aprovada pelo corretor automático.
 """
 
 
-from typing_extensions import Self
+
 
 
 class Conta:
@@ -95,6 +95,8 @@ class Conta:
 
 	@ativa.setter
 	def ativa(self, situacao):
+		if isinstance(valor, bool):
+			self.__ativa = valor
 		"""
 		Implemente o setter ativa: recebe um valor booleano (situacao), e atribui
 		esse valor ao atributo privado ativa.
@@ -128,6 +130,10 @@ class Conta:
 
 
 	def sacar(self, valor):
+		if self._validar_condicoes(valor):
+			if self.saldo >= valor:
+				self.__saldo -= valor
+				self._gravar_operacao('saque', valor)
 		"""
 		Implemente o método sacar: recebe um valor para saque na conta, subtrai esse valor 
 		do saldo atual (atributo privado saldo), e adiciona a seguinte operação ao
