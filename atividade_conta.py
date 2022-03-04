@@ -27,8 +27,9 @@ class Conta:
 		self.__numero = numero
 		self.__saldo = saldo_inicial 
 		self.__ativa = False
-		self.__operacoes = []
-        self._gravar_operacao('saldo inicial', self.__saldo)
+		self.__operacoes = [] 
+		self._gravar_operacao('saldo inicial', self.__saldo)
+        
 		
 		"""
 		Crie os seguintes atributos privados no construtor da classe e inicie 
@@ -105,10 +106,15 @@ class Conta:
 		a função isinstance(NOME_VARIAVEL, bool), onde NOME_VARIAVEL representa
 		o nome de uma variável ou parâmetro, e bool representa o tipo booleano.
 		"""
+
 		pass
 	
 
 	def depositar(self, valor):
+		if self._validar_condicoes(valor):
+			self.__saldo += valor
+			self._gravar_operacao('deposito', valor)
+		
 		"""
 		Implemente o método depositar: recebe um valor para depósito na conta,
 		adiciona esse valor ao saldo atual (atributo privado saldo), e adiciona a seguinte
@@ -177,4 +183,5 @@ class Conta:
 		Você deve seguir exatamente esse padrão, utilizando letras minúsculas e sem
 		acentos.
 		"""
+		
 		pass
