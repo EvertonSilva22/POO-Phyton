@@ -142,6 +142,11 @@ class Conta:
 
 
 	def transferir(self, conta_destino, valor):
+		if conta_destino.ativa:
+			if self._validar_condicoes(valor) and self.saldo >= valor:
+				conta_destino.__saldo += valor
+				self.__saldo -= valor
+				self._gravar_operacao('transferencia', valor)
 		"""
 		Implemente o método transferir: recebe dois parâmetros: a conta de destino, que é
 		um outro objeto já instanciado da classe Conta (isto é, ele possui os métodos 
@@ -185,10 +190,10 @@ class Conta:
 		"""
 		def tirar_extrato(self):
 			return self.__operacoes
-			def _gravar_operacao(self, operacao, valor):
-				self.__operacoes.append((operacao, valor))
-				def _validar_condicoes(self, valor):
-					if self.ativa and valor > 0:
-						return True
-						return False
-		pass
+		def _gravar_operacao(self, operacao, valor):
+			self.__operacoes.append((operacao, valor))
+		def _validar_condicoes(self, valor):
+			if self.ativa and valor > 0:
+				return True
+				return False
+	pass
