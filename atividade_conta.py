@@ -28,7 +28,7 @@ class Conta:
 		self.__saldo = saldo_inicial 
 		self.__ativa = False
 		self.__operacoes = []
-        Self._gravar_operacao('saldo inicial', self.__saldo)
+        self._gravar_operacao('saldo inicial', self.__saldo)
 		
 		"""
 		Crie os seguintes atributos privados no construtor da classe e inicie 
