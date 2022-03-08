@@ -273,6 +273,9 @@ class Ebook:
 	"""
 
 	def __init__(self, nome, preco, autor, numero_paginas):
+         super().__init__(nome, preco)
+         self.__autor = autor
+         self.__numero_paginas = self.numero_paginas = numero_paginas
 		"""
 		Inicializa nome e preco utilizando o construtor da superclasse Produto, 
 		(use a função super()), e também inicializa os atributos privados autor e
@@ -289,6 +292,7 @@ class Ebook:
 
 	@property
 	def nome_exibicao(self):
+         return f"{self.nome} ({self.__autor})"
 		"""
 		Property nome_exibicao: devolve (retorna) uma string com o nome e autor
 		do livro no seguinte formato (sem aspas): "Nome (Autor)".
@@ -305,6 +309,7 @@ class Ebook:
 
 	@property
 	def numero_paginas(self):
+         return self.__numero_paginas
 		"""
 		Property numero_paginas: devolve (retorna) o valor do atributo 
 		privado numero_paginas.
@@ -314,6 +319,10 @@ class Ebook:
 
 	@numero_paginas.setter
 	def numero_paginas(self, valor):
+         if valor > 0:
+            self.__numero_paginas = valor
+         else:
+            raise ValueError("'numero de paginas' deve ser maior que zero.")
 		"""
 		Setter numero_paginas: recebe um valor e atualiza o atributo privado
 		numero_paginas com esse valor.
