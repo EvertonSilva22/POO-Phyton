@@ -1,7 +1,7 @@
 # Programação Orientada a Objetos
 # AC03 ADS-EaD - Implementação de classes, herança, polimorfismo e lançamento de exceções.
 #
-# Email Impacta: @aluno.faculdadeimpacta.com.br
+# Email Impacta: everton.asilva@aluno.faculdadeimpacta.com.br
 
 
 class Produto:
