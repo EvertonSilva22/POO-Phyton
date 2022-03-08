@@ -183,6 +183,9 @@ class ProdutoEletronico:
 	"""
 
 	def __init__(self, nome, preco, peso, tensao, tempo_garantia):
+         super().__init__(nome, preco, peso)
+         self.__tensao = self.tensao = tensao
+         self.__tempo_garantia = tempo_garantia
 		"""
 		Inicializa nome, preco e peso utilizando o construtor da superclasse ProdutoFisico, 
 		(use a função super()), e também inicializa os atributos privados tensao e
@@ -199,6 +202,7 @@ class ProdutoEletronico:
 	
 	@property
 	def tensao(self):
+         return self.__tensao
 		"""
 		Property tensao: devolve (retorna) o valor do atributo privado tensao.
 		"""
@@ -207,6 +211,7 @@ class ProdutoEletronico:
 
 	@property
 	def tempo_garantia(self):
+         return self.__tempo_garantia
 		"""
 		Property tempo_garantia: devolve (retorna) o valor do atributo privado tempo_garantia.
 		"""
@@ -215,6 +220,13 @@ class ProdutoEletronico:
 	
 	@tensao.setter
 	def tensao(self, nova_tensao):
+         if Utils.is_int(nova_tensao):
+            if nova_tensao == 0 or nova_tensao == 127 or nova_tensao == 220:
+                self.__tensao = nova_tensao
+            else:
+                raise ValueError("'tensao' valor inválido.")
+         else:
+            raise TypeError("'tensao' deve ser um valor inteiro")
 		"""
 		Setter tensao: recebe uma nova_tensao e atualiza o valor do atributo privado
 		tensao com esse valor (que representa a tensão de um aparelho eletrônico, 
@@ -232,6 +244,8 @@ class ProdutoEletronico:
 
 
 	def calcular_preco_com_frete(self):
+         valor_frete = super(ProdutoEletronico, self).calcular_preco_com_frete()
+         return valor_frete + (valor_frete * 0.01)
 		"""
 		Método que calcula o valor final do produto eletrônico com o frete incluso.
 		O cálculo é o mesmo que o produto físico, mas deverá ser acrescido 1% 
