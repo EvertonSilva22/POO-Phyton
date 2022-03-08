@@ -1,7 +1,7 @@
 # Programação Orientada a Objetos
 # AC03 ADS-EaD - Implementação de classes, herança, polimorfismo e lançamento de exceções.
 #
-# Email Impacta: ______________@aluno.faculdadeimpacta.com.br
+# Email Impacta: @aluno.faculdadeimpacta.com.br
 
 
 class Produto:
@@ -10,8 +10,9 @@ class Produto:
 	"""
 
 	def __init__(self, nome, preco):
-        self.__nome = self.nome = nome
-        self.__preco = self.preco = preco
+         self._nome = self.nome = nome
+         self._preco = self.preco = preco
+
 		"""
 		Inicializa os atributos privados nome e preco.
 
@@ -24,6 +25,7 @@ class Produto:
 	
 	@property
 	def nome(self):
+         return self.__nome
 		"""
 		Property nome: devolve (retorna) o valor do atributo privado nome.
 		"""
@@ -32,6 +34,7 @@ class Produto:
 	
 	@property
 	def preco(self):
+         return self.__preco
 		"""
 		Property preco: devolve (retorna) o valor do atributo privado preco.
 		"""
@@ -40,6 +43,10 @@ class Produto:
 	
 	@nome.setter
 	def nome(self, novo_nome):
+         if len(novo_nome) != 0:
+            self.__nome = novo_nome
+         else:
+            raise ValueError("'nome' nao deve ser vazio.")
 		"""
 		Setter nome: recebe um novo_nome e atualiza o valor do atributo	privado
 		nome com esse valor.
@@ -53,6 +60,13 @@ class Produto:
 	
 	@preco.setter
 	def preco(self, novo_preco):
+         if Utils.is_int(novo_preco) or isinstance(novo_preco, float):
+            if novo_preco > 0:
+                self.__preco = novo_preco
+            else:
+                raise ValueError("'preco' deve ser maior que zero.")
+         else:
+            raise TypeError("'preco' somente valores numericos sao aceitos")
 		"""
 		Setter preco: recebe um novo_preco e atualiza o valor do atributo privado
 		preco com esse valor.
@@ -68,6 +82,7 @@ class Produto:
 
 	
 	def calcular_preco_com_frete(self):
+         return self.preco
 		"""
 		Método que calcula o valor final do produto com o frete incluso.
 		Deve devolver (retornar) o valor do atributo privado preco.
@@ -82,6 +97,8 @@ class ProdutoFisico:
 	"""
 
 	def __init__(self, nome, preco, peso):
+         super().__init__(nome, preco)
+         self.__peso = self.peso = peso
 		"""
 		Inicializa nome e preco utilizando o construtor da superclasse Produto, 
 		(use a função super()), e também inicializa o atributo privado peso.
@@ -95,6 +112,7 @@ class ProdutoFisico:
 
 	@property
 	def peso(self):
+         return self.__peso
 		"""
 		Property peso: devolve (retorna) o valor do atributo privado peso.
 		"""
@@ -103,6 +121,13 @@ class ProdutoFisico:
 
 	@peso.setter
 	def peso(self, novo_peso):
+         if Utils.is_int(novo_peso):
+            if novo_peso > 0:
+                self.__peso = novo_peso
+            else:
+                raise ValueError("'peso' deve ser maior que zero")
+         else:
+            raise TypeError("'peso' deve ser um valor inteiro")
 		"""
 		Setter peso: recebe um novo_peso e atualiza o valor do atributo	privado
 		peso com esse valor (que representa o peso do produto em gramas).
@@ -117,6 +142,7 @@ class ProdutoFisico:
 
 	
 	def peso_em_kg(self):
+         return self.peso / 1000
 		"""
 		Método que calcula o peso do produto em quilogramas.
 		Deve devolver (retornar) o valor do peso convertido em quilogramas.
@@ -129,6 +155,8 @@ class ProdutoFisico:
 
 
 	def calcular_preco_com_frete(self):
+         valor_por_kg = 5.0
+         return self.preco + (self.peso_em_kg() * valor_por_kg)
 		"""
 		Método que calcula o valor final do produto físico com o frete incluso.
 		Para cada quilograma no peso do produto, acrescente R$5 ao seu valor final.
