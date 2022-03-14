@@ -25,10 +25,9 @@ class Conta:
 		self.__titular = titular
 		self.__agencia = agencia
 		self.__numero = numero
-		self.__saldo = saldo_inicial 
+		self.__saldo = saldo_inicial
 		self.__ativa = False
-		self.__operacoes = [] 
-		self._gravar_operacao('saldo inicial', self.__saldo)
+		self.__operacoes = [('saldo inicial', saldo_inicial)]
         
 		
 		"""
@@ -50,53 +49,58 @@ class Conta:
 
 	@property
 	def titular(self):
+		return self.__titular
 		"""
 		Implemente a property titular: retorna o valor do atributo privado titular;
 		"""
-		return self.__titular
+		
 		pass
 
 
 	@property
 	def agencia(self):
+		return self.__agencia
 		"""
 		Implemente a property agencia: retorna o valor do atributo privado agencia;
 		"""
-		return self.__agencia
+		
 		pass
 	
 
 	@property
 	def numero(self):
+		return self.__numero
 		"""
 		Implemente a property numero: retorna o valor do atributo privado numero;
 		"""
-		return self.__numero
+		
 		pass
 	
 
 	@property
 	def saldo(self):
+		return self.__saldo
 		"""
 		Implemente a property saldo: retorna o valor do atributo privado saldo;
 		"""
-		return self.__saldo
+		
 		pass
 	
 
 	@property
 	def ativa(self):
+		return self.__ativa
 		"""
 		Implemente a property ativa: retorna o valor do atributo privado ativa;
 		"""
-		return self.__ativa
+		
 		pass
 	
 
 	@ativa.setter
 	def ativa(self, situacao):
-		if isinstance(valor, bool):
-			self.__ativa = valor
+		if isinstance(situacao, bool):
+			self.__ativa = situacao
 		"""
 		Implemente o setter ativa: recebe um valor booleano (situacao), e atribui
 		esse valor ao atributo privado ativa.
@@ -113,9 +117,9 @@ class Conta:
 	
 
 	def depositar(self, valor):
-		if self._validar_condicoes(valor):
+		if (self.__ativa == True) and (valor > 0):
 			self.__saldo += valor
-			self._gravar_operacao('deposito', valor)
+			self.__operacoes.append(('deposito', valor))
 		
 		"""
 		Implemente o método depositar: recebe um valor para depósito na conta,
@@ -130,10 +134,9 @@ class Conta:
 
 
 	def sacar(self, valor):
-		if self._validar_condicoes(valor):
-			if self.saldo >= valor:
-				self.__saldo -= valor
-				self._gravar_operacao('saque', valor)
+		if self.__ativa == True and valor > 0 and valor <= self.__saldo:
+			self.__saldo -= valor
+			self.__operacoes.append(('saque', valor))
 		"""
 		Implemente o método sacar: recebe um valor para saque na conta, subtrai esse valor 
 		do saldo atual (atributo privado saldo), e adiciona a seguinte operação ao
@@ -148,11 +151,10 @@ class Conta:
 
 
 	def transferir(self, conta_destino, valor):
-		if conta_destino.ativa:
-			if self._validar_condicoes(valor) and self.saldo >= valor:
-				conta_destino.__saldo += valor
-				self.__saldo -= valor
-				self._gravar_operacao('transferencia', valor)
+		if self.__ativa == True and conta_destino.ativa == True and valor > 0 and valor <= self.__saldo:
+			self.__saldo -= valor
+			conta_destino.__saldo += valor
+			self.__operacoes.append(('transferencia', valor))
 		"""
 		Implemente o método transferir: recebe dois parâmetros: a conta de destino, que é
 		um outro objeto já instanciado da classe Conta (isto é, ele possui os métodos 
@@ -172,6 +174,7 @@ class Conta:
 	
 
 	def tirar_extrato(self):
+		return self.__operacoes
 		"""
 		Implemente o método tirar_extrato: retorna a lista de operações (o atributo privado
 		operacoes). Essa lista contém todas as operações feitas na conta (abertura da conta,
@@ -194,12 +197,4 @@ class Conta:
 		Você deve seguir exatamente esse padrão, utilizando letras minúsculas e sem
 		acentos.
 		"""
-		def tirar_extrato(self):
-			return self.__operacoes
-		def _gravar_operacao(self, operacao, valor):
-			self.__operacoes.append((operacao, valor))
-		def _validar_condicoes(self, valor):
-			if self.ativa and valor > 0:
-				return True
-				return False
 	pass
